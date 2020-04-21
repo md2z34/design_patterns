@@ -12,6 +12,8 @@ public class CategoryMenuItemAdapter implements MenuItem {
     private int numberOfAllChildren;
 
     public CategoryMenuItemAdapter(Category category) {
+        System.out.println("CategoryMenuItemAdapter::CategoryMenuItemAdapter");
+        System.out.println("  category.name: " + category.getName());
         this.category = category;
         this.submenus = category.getSubcategories().stream().map(CategoryMenuItemAdapter::new).collect(Collectors.toList());
         this.numberOfAllChildren = submenus.size() + submenus.stream().mapToInt(MenuItem::numberOfAllChildren).sum();
@@ -29,6 +31,7 @@ public class CategoryMenuItemAdapter implements MenuItem {
 
     @Override
     public int numberOfAllChildren() {
+        System.out.println("numberOfAllChildren in " + category.getName() +" is " + numberOfAllChildren);
         return numberOfAllChildren;
     }
 }
